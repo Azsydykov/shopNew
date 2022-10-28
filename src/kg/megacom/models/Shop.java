@@ -13,6 +13,9 @@ public class Shop {
         this.active = active;
     }
 
+    public Shop() {
+    }
+
     public Shop(String name) {
         this.name = name;
     }
@@ -39,5 +42,14 @@ public class Shop {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                "\n";
     }
 }

@@ -5,6 +5,10 @@ import kg.megacom.db.impl.DbHelperImpl;
 import kg.megacom.models.Product;
 import kg.megacom.models.Seller;
 import kg.megacom.models.Shop;
+import kg.megacom.service.CrudOperationService;
+import kg.megacom.service.SellOperationService;
+import kg.megacom.service.ipml.CrudOperationServiceImpl;
+import kg.megacom.service.ipml.SellOperationServiceImpl;
 
 import java.util.Scanner;
 
@@ -13,7 +17,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        DbHelper dbHelper = new DbHelperImpl();
+        CrudOperationService crudOperationService = new CrudOperationServiceImpl();
+
+        SellOperationService sellOperationService = new SellOperationServiceImpl();
+
+        System.out.println("Перейти в управление справочником ");
+
 
         //  System.out.println("Введите название магазина: ");
         //  dbHelper.createShop(new Shop(scanner.next()));

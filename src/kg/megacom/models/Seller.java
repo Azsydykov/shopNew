@@ -4,26 +4,26 @@ public class Seller {
     private long id;
     private String name;
     private int age;
-    private int shopId;
+    private Shop shopId;
     private boolean active;
 
 
-    public int getShopId() {
+    public Shop getShopId() {
         return shopId;
     }
 
-    public void setShopId(int shopId) {
+    public void setShopId(Shop shopId) {
         this.shopId = shopId;
     }
 
-    public Seller(long id, String name, int age, int shopId, boolean active) {
+    public Seller(long id, String name, int age, Shop shopId, boolean active) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.shopId= shopId;
         this.active = active;
     }
-    public Seller(String name, int age, int shopId) {
+    public Seller(String name, int age, Shop shopId) {
 
         this.name = name;
         this.age = age;

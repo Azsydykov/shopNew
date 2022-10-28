@@ -8,5 +8,7 @@ public interface SellerService {
     void createSeller(Seller seller);
     public List<Seller> getAllSellers();
     Seller getSellerById(Long id);
-    public void deleteSeller(long id);
+    public void deleteSeller(int id);
+
+    void updateSeller(int id);
 }
