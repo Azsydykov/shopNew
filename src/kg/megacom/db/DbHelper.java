@@ -4,19 +4,15 @@ import kg.megacom.models.Product;
 import kg.megacom.models.Seller;
 import kg.megacom.models.Shop;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public interface DbHelper {
+    public PreparedStatement getConnection(String sql);
 
-    void createShop(Shop shop);
 
-    void createSeller(Seller seller);
-    public List<Seller> getAllSellers();
-    Seller getSellerById(Long id);
-    public void deleteSeller(long id);
-    void createProduct(Product product);
-    public List<Product> getAllProducts();
-    Product getProductById(Long id);
+
+
 
 
 
