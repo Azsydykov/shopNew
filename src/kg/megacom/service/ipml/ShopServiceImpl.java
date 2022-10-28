@@ -21,12 +21,7 @@ public class ShopServiceImpl implements ShopService {
         try {
             PreparedStatement ps = dbHelper.getConnection("insert into tb_shop(name) values (?)");
             ps.setString(1, shop.getName());
-            int result = ps.executeUpdate();
-            if (result == 1) {
-                System.out.println("Обьект успешно добавлен");
-            } else if (result == 0) {
-                System.out.println("Запрос успешно выполнен. Заняло 0мс, 0 строк изменено");
-            }
+            ps.executeUpdate();
         } catch (SQLException throwables) {
             throw new RuntimeException("Произошла ошибка при сохранении магазина");
         }
@@ -53,6 +48,7 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public void updateShop(int id) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите новое название: ");
         String name = scanner.next();
         try {
             PreparedStatement preparedStatement = dbHelper.getConnection("Update tb_shop set name= ? where id=?");

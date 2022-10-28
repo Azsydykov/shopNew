@@ -22,6 +22,7 @@ public class Main {
         SellOperationService sellOperationService = new SellOperationServiceImpl();
 
         System.out.println("Перейти в управление справочником ");
+        crudOperationService.crudObjects();
 
 
         //  System.out.println("Введите название магазина: ");

@@ -38,12 +38,14 @@ public class CrudOperationServiceImpl implements CrudOperationService {
                     System.out.println(shopService.shopList());
                     break;
                 case 3:
-                    System.out.println("\n Введите название");
-                    shopService.updateShop(1);
+                    System.out.println("\n Введите id магазина, которую хотите изменить");
+                    shopService.updateShop(sc.nextInt());
+                    System.out.println("Объект изменён");
                     break;
                 case 4:
-                    shopService.deleteShop(1);
-                    System.out.println("Объект 1 удален");
+                    System.out.println("Введите id магазина для удаления");
+                    shopService.deleteShop(sc.nextInt());
+                    System.out.println("Объект удален");
                     break;
 
             }
