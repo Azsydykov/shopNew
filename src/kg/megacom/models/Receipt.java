@@ -1,42 +1,56 @@
 package kg.megacom.models;
 
-import java.util.Date;
-import java.util.Random;
-
 public class Receipt {
 
-    private double id;
-    private Date addDate;
-    private int totalSum;
+    private long id;
+    private String addDate;
+    private Seller seller;
+    private double totalSum;
     private int numOfReceipt;
+    private int fd;
 
-    public Receipt( Date addDate, int totalSum, int numOfReceipt) {
-        this.id = Math.random();
-        this.addDate = addDate;
-        this.totalSum = totalSum;
-        this.numOfReceipt = numOfReceipt;
+
+
+    public int getFd() {
+        return fd;
+    }
+
+    public void setFd(int fd) {
+        this.fd = fd;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Receipt() {
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public Date getAddDate() {
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    public String getAddDate() {
         return addDate;
     }
 
-    public void setAddDate(Date addDate) {
+    public void setAddDate(String  addDate) {
         this.addDate = addDate;
     }
 
-    public int getTotalSum() {
+    public double getTotalSum() {
         return totalSum;
     }
 
-    public void setTotalSum(int totalSum) {
+    public void setTotalSum(double totalSum) {
         this.totalSum = totalSum;
     }
 
@@ -52,9 +66,11 @@ public class Receipt {
     public String toString() {
         return "Receipt{" +
                 "id=" + id +
-                ", addDate=" + addDate +
+                ", seller_name='" + seller.getName() + '\'' +
+                ", seller=" + seller.getId() +
                 ", totalSum=" + totalSum +
                 ", numOfReceipt=" + numOfReceipt +
-                '}';
+                ", fd=" + fd +
+                '}'+"\n";
     }
 }

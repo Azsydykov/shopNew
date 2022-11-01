@@ -1,13 +1,7 @@
 package kg.megacom.db.impl;
-
 import kg.megacom.db.DbHelper;
-import kg.megacom.models.Product;
-import kg.megacom.models.Seller;
-import kg.megacom.models.Shop;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class DbHelperImpl implements DbHelper {
 

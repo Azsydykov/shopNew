@@ -19,37 +19,37 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public void createSeller(Seller seller) {
-        try {
-            PreparedStatement ps = dbHelper.getConnection("insert into tb_seller(name,age,shops_id) values (?,?,?)");
-            ps.setString(1, seller.getName());
-            ps.setInt(2, seller.getAge());
-            ps.setInt(3, seller.getShopId().getId());
-            int result = ps.executeUpdate();
-            if (result == 1) {
-                System.out.println("Обьект успешно добавлен");
-            } else if (result == 0) {
-                System.out.println("Запрос успешно выполнен. Заняло 0мс, 0 строк изменено");
+
+            try {
+                PreparedStatement ps = dbHelper.getConnection("insert into tb_seller (name,age,shop_id) values (?,?,?)");
+                ps.setString(1, seller.getName());
+                ps.setInt(2, seller.getAge());
+                ps.setInt(3, seller.getShopId().getId());
+
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException("Произошла ошибка при создании Сотрудника");
             }
-        } catch (SQLException throwables) {
-            throw new RuntimeException("Произошла ошибка при сохранении продавца");
         }
-    }
 
     @Override
     public List<Seller> getAllSellers() {
         try {
-            PreparedStatement ps = dbHelper.getConnection("select s.id,s.name,s.age,  sh.id as shop_id, sh.name as shop_name from tb_seller s INNER join tb_shop sh on sh.id=s.shop_id\n");
-            ResultSet resultSet = ps.executeQuery();
+            PreparedStatement ps = dbHelper.getConnection("select e.id,e.name,e.age, s.id as shop_id, s.name as shop_name from tb_seller e INNER join tb_shop s\n" +
+                    " on s.id=e.shop_id ");
+            ResultSet rs = ps.executeQuery();
             List<Seller> sellerList = new ArrayList<>();
-            while (resultSet.next()) {
+            while (rs.next()) {
                 Seller seller = new Seller();
-                seller.setId(resultSet.getInt("id"));
-                seller.setName(resultSet.getString("name"));
-                seller.setAge(resultSet.getInt("age"));
+                seller.setId(rs.getInt("id"));
+                seller.setName(rs.getString("name"));
+                seller.setAge(rs.getInt("age"));
                 Shop shop = new Shop();
-                shop.setId(resultSet.getInt("shop_id"));
-                shop.setName(resultSet.getString("name"));
+                shop.setId(rs.getInt("shop_id"));
+                shop.setName(rs.getString("shop_name"));
+
                 seller.setShopId(shop);
+
                 sellerList.add(seller);
             }
             return sellerList;
@@ -84,7 +84,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public void deleteSeller(int id) {
         try {
-            PreparedStatement ps = dbHelper.getConnection("delete from tb_employees where id=?");
+            PreparedStatement ps = dbHelper.getConnection("delete from tb_seller where id=?");
             ps.setInt(1, id);
             int result = ps.executeUpdate();
             if (result == 1) {
@@ -92,8 +92,8 @@ public class SellerServiceImpl implements SellerService {
             } else if (result == 0) {
                 System.out.println("Запрос успешно выполнен. Заняло 0мс, 0 строк изменено");
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException throwables) {
+            throw new RuntimeException("Произошла ошибка при удалении продавца!");
         }
     }
 
@@ -106,14 +106,9 @@ public class SellerServiceImpl implements SellerService {
             PreparedStatement ps = dbHelper.getConnection("Update tb_seller set name=? where id=?");
             ps.setString(1, name);
             ps.setInt(2, id);
-            int result = ps.executeUpdate();
-            if (result == 1) {
-                System.out.println("Обьект успешно изменён");
-            } else if (result == 0) {
-                System.out.println("Запрос успешно выполнен. Заняло 0мс, 0 строк изменено");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new RuntimeException("Произошла ошибка при изменении продавца!");
         }
     }
 }

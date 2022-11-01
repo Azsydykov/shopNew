@@ -4,6 +4,7 @@ public class Product {
 
     private long id;
     private String name;
+    private int amount;
     private double price;
 
     public Product(String name, double price) {
@@ -12,6 +13,10 @@ public class Product {
     }
     public Product(String name) {
         this.name = name;
+    }
+    public Product (String name, int amount){
+        this.name = name;
+        this.amount = amount;
     }
     public Product(double price) {
 
@@ -47,10 +52,10 @@ public class Product {
     @Override
     public String toString() {
         return
-                "{" +
                 "id=" + id +", "+ name  +
-                ", price=" + price +
-                '}';
+                ", price=" + price+"\n";
+
     }
+
 }
 

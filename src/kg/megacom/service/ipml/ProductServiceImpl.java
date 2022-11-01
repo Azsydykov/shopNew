@@ -2,6 +2,7 @@ package kg.megacom.service.ipml;
 
 import kg.megacom.db.DbHelper;
 import kg.megacom.db.impl.DbHelperImpl;
+import kg.megacom.exeption.ProductNotFoundExc;
 import kg.megacom.models.Product;
 import kg.megacom.service.ProductService;
 
@@ -13,6 +14,8 @@ import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
     DbHelper dbHelper = new DbHelperImpl();
+    List<Product> productList = new ArrayList<>();
+    //  List<Product> selectedProductList = new ArrayList<>();
 
     @Override
     public void createProduct(Product product) {
@@ -37,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             PreparedStatement ps = dbHelper.getConnection("select * from tb_product");
             ResultSet resultSet = ps.executeQuery();
-            List<Product> productList = new ArrayList<>();
+
             while (resultSet.next()) {
                 Product product = new Product();
                 product.setId(resultSet.getLong("id"));
@@ -64,9 +67,25 @@ public class ProductServiceImpl implements ProductService {
                 product.setName(resultSet.getString("name"));
                 product.setPrice(resultSet.getLong("price"));
             }
+            if (product.getId() == 0) {
+                throw new ProductNotFoundExc("Продукт с id" + id + " не найден!");
+
+
+            }
+
             return product;
         } catch (SQLException throwables) {
             throw new RuntimeException("Произошла ошибка при выводе продукта!");
         }
+    }
+
+    @Override
+    public Product getProductByName(String selectedProduct) {
+        for (Product item : productList) {
+            if (selectedProduct.equals(item.getName())) {
+                return item;
+            }
+        }
+        return null;
     }
 }

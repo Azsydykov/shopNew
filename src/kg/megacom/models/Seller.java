@@ -71,8 +71,7 @@ public class Seller {
                 "id=" + id +
                 ", name=" + name +
                 ", age=" + age +
-                ", shopId=" + shopId +
-                ", active=" + active +
-                '}';
+                ", shopId=" + shopId +'}';
+
     }
 }

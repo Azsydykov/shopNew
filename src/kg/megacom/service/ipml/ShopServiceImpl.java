@@ -26,7 +26,6 @@ public class ShopServiceImpl implements ShopService {
             throw new RuntimeException("Произошла ошибка при сохранении магазина");
         }
     }
-
     @Override
     public List<Shop> shopList() {
         try {
@@ -68,6 +67,25 @@ public class ShopServiceImpl implements ShopService {
             ps.executeUpdate();
         } catch (SQLException throwables) {
             throw new RuntimeException("Произошла ошибка при удалении магазина");
+        }
+    }
+
+    @Override
+    public Shop findShopById(Long id) {
+        try {
+            PreparedStatement ps = dbHelper.getConnection("select * from tb_shop where id=?");
+            ps.setLong(1,id);
+            ResultSet resultSet = ps.executeQuery();
+            Shop shop = new Shop();
+            while (resultSet.next()) {
+
+                shop.setId(resultSet.getInt("id"));
+                shop.setName(resultSet.getString("name"));
+
+            }
+            return shop;
+        } catch (SQLException throwables) {
+            throw new RuntimeException("Произошла ошибка при выводе магазинов по id!");
         }
     }
 }
