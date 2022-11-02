@@ -18,9 +18,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CrudOperationService crudOperationService = new CrudOperationServiceImpl();
         SellOperationService sellOperationService = new SellOperationServiceImpl();
+        ReceiptService receiptService = new ReceiptServiceImpl();
 
         System.out.println("Перейти в управление справочником - 0");
         System.out.println("Перейти в управление продажами - 1");
+
 
         switch (scanner.nextInt()) {
             case 0:

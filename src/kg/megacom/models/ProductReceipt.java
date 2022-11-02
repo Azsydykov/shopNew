@@ -1,6 +1,6 @@
 package kg.megacom.models;
 
-public class ProductReceipt {
+public class ProductReceipt implements Comparable<ProductReceipt> {
     private long id;
     private Product product;
     private Receipt receipt;
@@ -59,4 +59,21 @@ public class ProductReceipt {
         this.cost = cost;
     }
 
+    @Override
+    public String toString() {
+        return "ProductReceipt{" +
+                "id=" + id +
+                ", product=" + product +
+                ", receipt=" + receipt +
+                ", count=" + count +
+                ", cost=" + cost +
+                '}'+"\n";
+    }
+
+    @Override
+    public int compareTo(ProductReceipt o) {
+      //  return o.product.getName().compareTo(this.product.getName());
+        return (int) (o.getCount()+(this.getCount()));
+
+    }
 }

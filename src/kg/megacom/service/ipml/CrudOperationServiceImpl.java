@@ -7,18 +7,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class CrudOperationServiceImpl implements CrudOperationService {
-
+    Random random = new Random();
+    Scanner sc = new Scanner(System.in);
     SellerService sellerService = new SellerServiceImpl();
     ShopService shopService = new ShopServiceImpl();
     ReceiptService receiptService = new ReceiptServiceImpl();
-    ProductService productService = new ProductServiceImpl();
-    ProductReceiptService productReceiptService = new ProductReceiptServiceImpl();
-    Scanner sc = new Scanner(System.in);
+
 
     @Override
     public void crudObjects() {
 
-        System.out.println("Выберите объект с которым хотите совершить операции.\n1-магазин, 2-продавец ");
+        System.out.println("Выберите объект с которым хотите совершить операции.\n1-магазин, 2-продавец, 3-чеки");
         int answer = sc.nextInt();
         if (answer == 1) {
             System.out.println("Выберите операцию.\n" +
@@ -97,61 +96,52 @@ public class CrudOperationServiceImpl implements CrudOperationService {
                     System.out.println("Продавец успешно удален");
                     break;
             }
+        } else if (answer == 3) {
+            System.out.println("Выберите операцию.\n" +
+                    "Создать чек - 1 \n" + "Получить список - 2 \n" +
+                    "Вывести чек по id- 3 \n" +
+                    "Удалить чек - 4");
+            int chooseOperation2 = sc.nextInt();
+            switch (chooseOperation2) {
+                case 1:
+                    int num = random.nextInt(10000 - 0 + 1) + 0;
+                    System.out.println(sellerService.getAllSellers());
+                    System.out.println("Введите id продавца.");
+                    int sellerId = sc.nextInt();
+
+                    System.out.println("Введите общую сумму");
+                    double totalSum = sc.nextDouble();
+                    System.out.println("Введите номер чека");
+                    int numOfReceipt = sc.nextInt();
+                    int fd = num;
+
+                    Receipt receipt = new Receipt();
+                    receipt.setTotalSum(totalSum);
+                    receipt.setNumOfReceipt(numOfReceipt);
+                    receipt.setFd(fd);
+
+                    Seller seller = new Seller();
+                    seller.setId(sellerId);
+                    receipt.setSeller(seller);
+
+                    receiptService.createReceipt(receipt);
+                    System.out.println("Вы успешно создали чек");
+                    break;
+                case 2:
+                    System.out.println("\n Список чеков");
+                    System.out.println(receiptService.getAllReceipts());
+                    break;
+                case 3:
+                    System.out.println("\nВведите id чека, который необходимо вывести: ");
+                    System.out.println(receiptService.getReceiptById(sc.nextLong()));
+                    break;
+                case 4:
+                    System.out.println(receiptService.getAllReceipts());
+                    System.out.println("\nВведите id чека, который необходимо удалить: ");
+                    receiptService.deleteReceipt(sc.nextInt());
+                    System.out.println("Чек успешно удален");
+                    break;
+            }
         }
-    }
-
-    @Override
-    public void crudReceipt() {
-        Random random = new Random();
-        int num = random.nextInt(10000 - 0 + 1) + 0;
-
-
-        System.out.println(sellerService.getAllSellers());
-        System.out.println("Введите id продавца.");
-        int sellerId = sc.nextInt();
-        System.out.println("Введите общую сумму");
-        double totalSum = sc.nextDouble();
-        System.out.println("Введите номер чека");
-        int numOfReceipt = sc.nextInt();
-        int fd = num;
-
-        Receipt receipt = new Receipt();
-        receipt.setTotalSum(totalSum);
-        receipt.setNumOfReceipt(numOfReceipt);
-        receipt.setFd(fd);
-
-        Seller seller = new Seller();
-        seller.setId(sellerId);
-        receipt.setSeller(seller);
-
-        receiptService.createReceipt(receipt);
-        System.out.println("Вы успешно создали чек");
-    }
-
-    @Override
-    public void crudProductReceipt() {
-        System.out.println(productService.getAllProducts());
-        System.out.println("Введите id продукта: ");
-        long productId = sc.nextLong();
-        System.out.println(receiptService.getAllReceipts());
-        System.out.println("Введите id чека: ");
-        long receiptId = sc.nextLong();
-        System.out.println("Введите количество продукта: ");
-        double count = sc.nextDouble();
-        System.out.println("Введите стоимость продукта: ");
-        double cost = sc.nextDouble();
-
-        ProductReceipt productReceipt = new ProductReceipt();
-        productReceipt.setCount(count);
-        productReceipt.setCost(cost);
-        Product product = new Product();
-        product.setId(productId);
-        Receipt receipt = new Receipt();
-        receipt.setId(receiptId);
-        productReceipt.setProduct(product);
-        productReceipt.setReceipt(receipt);
-
-        productReceiptService.createProductReceipt(productReceipt);
-        System.out.println("Вы успешно создали чек");
     }
 }

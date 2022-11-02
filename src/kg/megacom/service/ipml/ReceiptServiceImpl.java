@@ -39,13 +39,13 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         try {
             PreparedStatement ps = dbHelper.getConnection("select c.id, c.num_of_receipt, c.fd, c.totalSum, " +
-                    "e.id as seller_id, e.name  from tb_receipt c inner join tb_seller e on e.id=c.seller_id ;");
+                    "c.add_date, e.id as seller_id, e.name  from tb_receipt c inner join tb_seller e on e.id=c.seller_id ;");
             ResultSet resultSet = ps.executeQuery();
             List<Receipt> receiptList = new ArrayList<>();
             while (resultSet.next()) {
                 Receipt receipt = new Receipt();
                 receipt.setId(resultSet.getLong("id"));
-                //  receipt.setAddDate(resultSet.getString("add_date"));
+                receipt.setAddDate(resultSet.getString("add_date"));
 
                 Seller seller = new Seller();
                 seller.setName(resultSet.getString("name"));
@@ -65,7 +65,7 @@ public class ReceiptServiceImpl implements ReceiptService {
     @Override
     public Receipt getReceiptById(Long id) {
         try {
-            PreparedStatement ps = dbHelper.getConnection("select c.id, c.num_of_receipt, c.fd, c.totalSum, e.id as seller_id, e.name  " +
+            PreparedStatement ps = dbHelper.getConnection("select c.id, c.num_of_receipt, c.fd, c.totalSum, c.add_date, e.id as seller_id, e.name  " +
                     "from tb_receipt c inner join tb_seller e on e.id=c.seller_id where c.id=(?)");
             ps.setLong(1, id);
             ResultSet resultSet = ps.executeQuery();
@@ -77,6 +77,7 @@ public class ReceiptServiceImpl implements ReceiptService {
                 seller.setId(resultSet.getInt("seller_id"));
 
                 receipt.setId(resultSet.getLong("id"));
+                receipt.setAddDate(resultSet.getString("add_date"));
                 receipt.setTotalSum(resultSet.getDouble("totalSum"));
                 receipt.setNumOfReceipt(resultSet.getInt("num_of_receipt"));
                 receipt.setFd(resultSet.getInt("fd"));

@@ -69,6 +69,7 @@ public class Receipt {
                 ", seller_name='" + seller.getName() + '\'' +
                 ", seller=" + seller.getId() +
                 ", totalSum=" + totalSum +
+                ", add_date=" + addDate +
                 ", numOfReceipt=" + numOfReceipt +
                 ", fd=" + fd +
                 '}'+"\n";

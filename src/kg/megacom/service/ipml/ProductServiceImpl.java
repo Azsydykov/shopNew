@@ -15,7 +15,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     DbHelper dbHelper = new DbHelperImpl();
     List<Product> productList = new ArrayList<>();
-    //  List<Product> selectedProductList = new ArrayList<>();
+
 
     @Override
     public void createProduct(Product product) {
@@ -68,24 +68,12 @@ public class ProductServiceImpl implements ProductService {
                 product.setPrice(resultSet.getLong("price"));
             }
             if (product.getId() == 0) {
-                throw new ProductNotFoundExc("Продукт с id" + id + " не найден!");
-
+                throw new ProductNotFoundExc("Продукт с id=" + id + " не найден!");
 
             }
-
             return product;
         } catch (SQLException throwables) {
             throw new RuntimeException("Произошла ошибка при выводе продукта!");
         }
-    }
-
-    @Override
-    public Product getProductByName(String selectedProduct) {
-        for (Product item : productList) {
-            if (selectedProduct.equals(item.getName())) {
-                return item;
-            }
-        }
-        return null;
     }
 }

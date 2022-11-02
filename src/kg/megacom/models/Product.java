@@ -1,27 +1,18 @@
 package kg.megacom.models;
 
-public class Product {
+public class Product implements Comparable<Product>{
 
     private long id;
     private String name;
-    private int amount;
+
     private double price;
 
-    public Product(String name, double price) {
+    public Product(long id, String name, double price) {
+        this.id = id;
         this.name = name;
         this.price = price;
     }
-    public Product(String name) {
-        this.name = name;
-    }
-    public Product (String name, int amount){
-        this.name = name;
-        this.amount = amount;
-    }
-    public Product(double price) {
 
-        this.price = price;
-    }
     public Product() {
     }
 
@@ -57,5 +48,9 @@ public class Product {
 
     }
 
+    @Override
+    public int compareTo(Product o) {
+        return o.name.compareTo(o.getName());
+    }
 }
 

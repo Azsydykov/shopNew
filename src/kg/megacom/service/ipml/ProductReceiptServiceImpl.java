@@ -25,7 +25,6 @@ public class ProductReceiptServiceImpl implements ProductReceiptService {
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при сохранении чека");
         }
-
     }
 
     @Override
