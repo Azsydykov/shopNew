@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class ReceiptServiceImpl implements ReceiptService {
     DbHelper dbHelper = new DbHelperImpl();
@@ -23,7 +24,7 @@ public class ReceiptServiceImpl implements ReceiptService {
     public void createReceipt(Receipt receipt) {
         try {
             PreparedStatement ps = dbHelper.getConnection("insert into tb_receipt (add_date, seller_id, totalSum, num_of_receipt,fd) VALUES (?,?,?,?,?)");
-            ps.setString(1, (sdf.format(new Date())));
+            ps.setString(1, String.valueOf((new Date())));
             ps.setLong(2, receipt.getSeller().getId());
             ps.setDouble(3, receipt.getTotalSum());
             ps.setInt(4, receipt.getNumOfReceipt());
@@ -107,7 +108,19 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public void updateReceipt(int id) {
+    public void updateReceipt(long id) {
+        Scanner sc = new Scanner(System.in);
+        //System.out.println("Введите сумму: ");
+        String totalSum = sc.next();
+        try {
+            PreparedStatement ps = dbHelper.getConnection("Update tb_receipt set totalSum=? where id=?");
+            ps.setString(1, totalSum);
+            ps.setLong(2, id);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throw new RuntimeException("Произошла ошибка при изменении продавца!");
+        }
+    }
 
     }
-}
+

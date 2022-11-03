@@ -61,12 +61,12 @@ public class ProductReceipt implements Comparable<ProductReceipt> {
 
     @Override
     public String toString() {
-        return "ProductReceipt{" +
+        return "{" +
                 "id=" + id +
-                ", productId=" + product.getId() +
-                ", receiptId=" + receipt.getId() +
-                ", count=" + count +
-                ", cost=" + cost +
+                ", id продукта=" + product +
+                ", id чека=" + receipt.getId() +
+                ", количество=" + count +
+                ", цена=" + cost +
                 '}'+"\n";
     }
 

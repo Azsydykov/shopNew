@@ -64,13 +64,12 @@ public class Receipt {
 
     @Override
     public String toString() {
-        return "Receipt{" +
-                "id=" + id +
-                ", seller_name='" + seller.getName() + '\'' +
-                ", seller=" + seller.getId() +
-                ", totalSum=" + totalSum +
-                ", add_date=" + addDate +
-                ", numOfReceipt=" + numOfReceipt +
+        return "ЧЕК{" +
+               // ", seller_name='" + seller.getName() + '\'' +
+                "Id продавца=" + seller.getId() +
+                ", итого к оплате=" + totalSum +
+                ", " + addDate +
+                ", номер чека=" + numOfReceipt +
                 ", fd=" + fd +
                 '}'+"\n";
     }

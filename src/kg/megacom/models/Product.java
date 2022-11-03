@@ -4,7 +4,6 @@ public class Product implements Comparable<Product>{
 
     private long id;
     private String name;
-
     private double price;
 
     public Product(long id, String name, double price) {
@@ -43,8 +42,8 @@ public class Product implements Comparable<Product>{
     @Override
     public String toString() {
         return
-                "id=" + id +", "+ name  +
-                ", price=" + price+"\n";
+                id +", "+ name  +
+                ", цена=" + price+"\n";
 
     }
 

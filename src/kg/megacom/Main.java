@@ -25,7 +25,9 @@ ProductReceiptService productReceiptService = new ProductReceiptServiceImpl();
 
         switch (scanner.nextInt()) {
             case 0:
-                crudOperationService.crudObjects();
+               crudOperationService.crudObjects();
+
+
 
                 break;
             case 1:

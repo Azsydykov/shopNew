@@ -15,6 +15,7 @@ public class SellOperationServiceImpl implements SellOperationService {
     ProductService productService = new ProductServiceImpl();
     SellerService sellerService = new SellerServiceImpl();
     ReceiptService receiptService = new ReceiptServiceImpl();
+    ProductReceiptService productReceiptService = new ProductReceiptServiceImpl();
 
     ArrayList<Receipt> receiptList = new ArrayList<>();
     TreeSet<ProductReceipt> selectedProduct = new TreeSet<>();
@@ -32,53 +33,41 @@ public class SellOperationServiceImpl implements SellOperationService {
         byte answer = 0;
         while (answer != 1) {
             ProductReceipt productReceipt = new ProductReceipt();
-            try {
-                System.out.println("Введите id продукта");
-                long productId = scanner.nextLong();
-                product = productService.getProductById(productId);
+            System.out.println("Введите id продукта");
+            long productId = scanner.nextLong();
+            product = productService.getProductById(productId);
 
+            productReceipt.setProduct(product);
+            System.out.println("Введите количество: ");
+            double setCount = scanner.nextDouble();
+            Receipt receipt = new Receipt();
+            receipt.setId(receipt.getId());
+            productReceipt.setReceipt(receipt);
 
-                productReceipt.setProduct(product);
-                System.out.println("Введите количество: ");
-                double setCount = scanner.nextDouble();
+            productReceipt.setCount(setCount);
+            productReceipt.setCost(product.getPrice() * setCount);
 
-                productReceipt.setCount(setCount);
-                productReceipt.setCost(product.getPrice() * setCount);
+            selectedProduct.add(productReceipt);
 
-                for (ProductReceipt item : selectedProduct) {
-                    if (this.product.getId() == productId) {
-                        System.out.println("Есть совпадение");
-                        item.getCount();
-
-                    }
-                }
-                selectedProduct.add(productReceipt);
-
-
-            } catch (ProductNotFoundExc e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            //productReceiptService.createProductReceipt(productReceipt);
+            productReceiptService.createProductReceipt(productReceipt);
 
             System.out.println("Продолжаете покупку? 1 нет, 0 да");
             answer = scanner.nextByte();
         }
-        System.out.println("Ваша корзина продуктов:");
         System.out.println(selectedProduct);
+
 
         double Sum = 0;
         for (ProductReceipt item : selectedProduct) {
             Sum += item.getCost();
         }
 
-        int num = random.nextInt(10000 - 0 + 1) + 0;
 
+        int num = random.nextInt(10000 - 0 + 1) + 0;
         System.out.println(sellerService.getAllSellers());
         System.out.println("Введите id продавца.");
         int sellerId = scanner.nextInt();
 
-        System.out.println("Введите общую сумму");
         double totalSum = Sum;
         System.out.println("Введите номер чека");
         int numOfReceipt = scanner.nextInt();
@@ -94,13 +83,22 @@ public class SellOperationServiceImpl implements SellOperationService {
         seller.setId(sellerId);
         receipt.setSeller(seller);
 
-        receiptService.createReceipt(receipt);
-        receiptList.add(receipt);
-        System.out.println("Вы успешно создали чек");
-        System.out.println(receipt);
 
-    }
-}
+        receiptList.add(receipt);
+
+
+
+        System.out.println("Список продуктов:");
+        System.out.println(selectedProduct);
+
+        System.out.println("Ваш чек:");
+        System.out.println(receiptList);
+
+         receiptService.createReceipt(receipt);
+
+
+            }
+        }
 
 
 
