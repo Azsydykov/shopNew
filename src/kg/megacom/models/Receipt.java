@@ -10,7 +10,6 @@ public class Receipt {
     private int fd;
 
 
-
     public int getFd() {
         return fd;
     }
@@ -42,7 +41,7 @@ public class Receipt {
         return addDate;
     }
 
-    public void setAddDate(String  addDate) {
+    public void setAddDate(String addDate) {
         this.addDate = addDate;
     }
 
@@ -64,13 +63,12 @@ public class Receipt {
 
     @Override
     public String toString() {
-        return "ЧЕК{" +
-               // ", seller_name='" + seller.getName() + '\'' +
-                "Id продавца=" + seller.getId() +
-                ", итого к оплате=" + totalSum +
-                ", " + addDate +
-                ", номер чека=" + numOfReceipt +
-                ", fd=" + fd +
-                '}'+"\n";
+        return " * ЧЕК * {" +
+                "Id КАССИРА = " + seller.getId() +
+                ", ИТОГ: " + " = " + totalSum +
+                ", ДАТА: " + addDate +
+                ", ЧЕК № = " + numOfReceipt +
+                ", FD = " + fd +
+                '}' + "\n";
     }
 }

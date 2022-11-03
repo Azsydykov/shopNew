@@ -47,8 +47,8 @@ public class Shop {
     @Override
     public String toString() {
         return
-                "id=" + id +
-                ", name=" + name +
-                ", active=" + active + "\n";
+                "ID = " + id +
+                ", НАЗВАНИЕ = " + name +
+                ", active = " + active + "\n";
     }
 }

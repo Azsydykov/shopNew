@@ -13,7 +13,6 @@ public class CrudOperationServiceImpl implements CrudOperationService {
     ShopService shopService = new ShopServiceImpl();
     ReceiptService receiptService = new ReceiptServiceImpl();
 
-
     @Override
     public void crudObjects() {
 

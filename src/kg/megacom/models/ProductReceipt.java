@@ -62,11 +62,11 @@ public class ProductReceipt implements Comparable<ProductReceipt> {
     @Override
     public String toString() {
         return "{" +
-                "id=" + id +
-                ", id продукта=" + product +
-                ", id чека=" + receipt.getId() +
-                ", количество=" + count +
-                ", цена=" + cost +
+                "ID = " + id +
+                ", ПРОДУКТ ID = " + product +
+                ", ЧЕК №: " + receipt.getId() +
+                ", КОЛИЧЕСТВО = " + count +
+                ", ЦЕНА = " + cost +
                 '}'+"\n";
     }
 

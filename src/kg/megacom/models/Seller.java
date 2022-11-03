@@ -67,11 +67,11 @@ public class Seller {
 
     @Override
     public String toString() {
-        return "{Продавцы" +
-                "id продовца=" + id +
-                ", имя=" + name +
-                ", возраст=" + age +
-                ", id магазина=" + shopId +'}';
+        return
+                "КАССИР ID = " + id +
+                ", ИМЯ = " + name +
+                ", ВОЗРАСТ = " + age +
+                ", ID МАГАЗИНА = " + shopId +'}';
 
     }
 }

@@ -16,7 +16,6 @@ public class SellOperationServiceImpl implements SellOperationService {
     SellerService sellerService = new SellerServiceImpl();
     ReceiptService receiptService = new ReceiptServiceImpl();
     ProductReceiptService productReceiptService = new ProductReceiptServiceImpl();
-
     ArrayList<Receipt> receiptList = new ArrayList<>();
     TreeSet<ProductReceipt> selectedProduct = new TreeSet<>();
 
@@ -62,7 +61,6 @@ public class SellOperationServiceImpl implements SellOperationService {
             Sum += item.getCost();
         }
 
-
         int num = random.nextInt(10000 - 0 + 1) + 0;
         System.out.println(sellerService.getAllSellers());
         System.out.println("Введите id продавца.");
@@ -83,10 +81,7 @@ public class SellOperationServiceImpl implements SellOperationService {
         seller.setId(sellerId);
         receipt.setSeller(seller);
 
-
         receiptList.add(receipt);
-
-
 
         System.out.println("Список продуктов:");
         System.out.println(selectedProduct);
@@ -94,12 +89,10 @@ public class SellOperationServiceImpl implements SellOperationService {
         System.out.println("Ваш чек:");
         System.out.println(receiptList);
 
-         receiptService.createReceipt(receipt);
+        receiptService.createReceipt(receipt);
 
-
-            }
-        }
-
+    }
+}
 
 
         /*

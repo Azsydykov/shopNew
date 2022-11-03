@@ -42,8 +42,8 @@ public class Product implements Comparable<Product>{
     @Override
     public String toString() {
         return
-                id +", "+ name  +
-                ", цена=" + price+"\n";
+                id +", "+" * " + name + " *"  +
+                ", ЦЕНА = " + price+"\n";
 
     }
 
