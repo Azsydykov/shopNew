@@ -63,8 +63,8 @@ public class ProductReceipt implements Comparable<ProductReceipt> {
     public String toString() {
         return "ProductReceipt{" +
                 "id=" + id +
-                ", product=" + product +
-                ", receipt=" + receipt +
+                ", productId=" + product.getId() +
+                ", receiptId=" + receipt.getId() +
                 ", count=" + count +
                 ", cost=" + cost +
                 '}'+"\n";
@@ -72,8 +72,8 @@ public class ProductReceipt implements Comparable<ProductReceipt> {
 
     @Override
     public int compareTo(ProductReceipt o) {
-      //  return o.product.getName().compareTo(this.product.getName());
-        return (int) (o.getCount()+(this.getCount()));
+        return o.product.getName().compareTo(this.product.getName());
+    //    return (int) (o.getCount()+(this.getCount()));
 
     }
 }

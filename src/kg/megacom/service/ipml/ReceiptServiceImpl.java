@@ -2,6 +2,7 @@ package kg.megacom.service.ipml;
 
 import kg.megacom.db.DbHelper;
 import kg.megacom.db.impl.DbHelperImpl;
+
 import kg.megacom.models.Receipt;
 import kg.megacom.models.Seller;
 import kg.megacom.service.ReceiptService;
@@ -36,7 +37,6 @@ public class ReceiptServiceImpl implements ReceiptService {
 
     @Override
     public List<Receipt> getAllReceipts() {
-
         try {
             PreparedStatement ps = dbHelper.getConnection("select c.id, c.num_of_receipt, c.fd, c.totalSum, " +
                     "c.add_date, e.id as seller_id, e.name  from tb_receipt c inner join tb_seller e on e.id=c.seller_id ;");
@@ -60,6 +60,7 @@ public class ReceiptServiceImpl implements ReceiptService {
         } catch (SQLException throwables) {
             throw new RuntimeException("Произошла ошибка при выводе списка чеков");
         }
+
     }
 
     @Override

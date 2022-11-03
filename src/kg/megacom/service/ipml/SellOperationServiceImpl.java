@@ -37,21 +37,28 @@ public class SellOperationServiceImpl implements SellOperationService {
                 long productId = scanner.nextLong();
                 product = productService.getProductById(productId);
 
+
+                productReceipt.setProduct(product);
+                System.out.println("Введите количество: ");
+                double setCount = scanner.nextDouble();
+
+                productReceipt.setCount(setCount);
+                productReceipt.setCost(product.getPrice() * setCount);
+
+                for (ProductReceipt item : selectedProduct) {
+                    if (this.product.getId() == productId) {
+                        System.out.println("Есть совпадение");
+                        item.getCount();
+
+                    }
+                }
+                selectedProduct.add(productReceipt);
+
+
             } catch (ProductNotFoundExc e) {
                 System.out.println(e.getMessage());
                 continue;
             }
-
-            productReceipt.setProduct(product);
-            System.out.println("Введите количество: ");
-            double setCount = scanner.nextDouble();
-
-            productReceipt.setCount(setCount);
-            productReceipt.setCost(product.getPrice() * setCount);
-
-
-            selectedProduct.add(productReceipt);
-
             //productReceiptService.createProductReceipt(productReceipt);
 
             System.out.println("Продолжаете покупку? 1 нет, 0 да");
@@ -60,7 +67,7 @@ public class SellOperationServiceImpl implements SellOperationService {
         System.out.println("Ваша корзина продуктов:");
         System.out.println(selectedProduct);
 
-        double Sum =0;
+        double Sum = 0;
         for (ProductReceipt item : selectedProduct) {
             Sum += item.getCost();
         }
