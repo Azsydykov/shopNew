@@ -29,13 +29,18 @@ public class SellOperationServiceImpl implements SellOperationService {
 
         //save ProductReceipt
         //save Receipt
+
         byte answer = 0;
         while (answer != 1) {
             ProductReceipt productReceipt = new ProductReceipt();
             System.out.println("Введите id продукта");
-            long productId = scanner.nextLong();
-            product = productService.getProductById(productId);
-
+            try {
+                long productId = scanner.nextLong();
+                product = productService.getProductById(productId);
+            } catch (ProductNotFoundExc e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
             productReceipt.setProduct(product);
             System.out.println("Введите количество: ");
             double setCount = scanner.nextDouble();
@@ -50,11 +55,12 @@ public class SellOperationServiceImpl implements SellOperationService {
 
             productReceiptService.createProductReceipt(productReceipt);
 
+
             System.out.println("Продолжаете покупку? 1 нет, 0 да");
             answer = scanner.nextByte();
         }
-        System.out.println(selectedProduct);
 
+        System.out.println(selectedProduct);
 
         double Sum = 0;
         for (ProductReceipt item : selectedProduct) {

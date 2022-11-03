@@ -1,6 +1,6 @@
 package kg.megacom.models;
 
-public class Product implements Comparable<Product>{
+public class Product implements Comparable<Product> {
 
     private long id;
     private String name;
@@ -42,8 +42,8 @@ public class Product implements Comparable<Product>{
     @Override
     public String toString() {
         return
-                id +", "+" * " + name + " *"  +
-                ", ЦЕНА = " + price+"\n";
+                "ID:" + id + ", " + "* " + name + " *" +
+                        " , ЦЕНА = " + price + "\n";
 
     }
 
