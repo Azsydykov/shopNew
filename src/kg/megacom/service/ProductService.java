@@ -9,4 +9,7 @@ public interface ProductService {
     public List<Product> getAllProducts();
     Product getProductById(Long id);
 
+      void increasePrice();
+
+
 }

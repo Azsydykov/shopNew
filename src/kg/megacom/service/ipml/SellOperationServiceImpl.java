@@ -25,6 +25,8 @@ public class SellOperationServiceImpl implements SellOperationService {
     public void sell() {
         System.out.println("Выберите продукты для продажи: ");
         List<Product> productList = productService.getAllProducts();
+       // productService.increasePrice();
+
         System.out.println(productList);
 
         //save ProductReceipt
@@ -98,9 +100,9 @@ public class SellOperationServiceImpl implements SellOperationService {
         receiptService.createReceipt(receipt);
 
     }
+
+
 }
-
-
         /*
         Вывести продукты для продажи
         Выбрать продукты (составить список продуктов для корзины и определить их количество) отдельный лист

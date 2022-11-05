@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
     DbHelper dbHelper = new DbHelperImpl();
@@ -75,5 +76,15 @@ public class ProductServiceImpl implements ProductService {
         } catch (SQLException throwables) {
             throw new RuntimeException("Произошла ошибка при выводе продукта!");
         }
+    }
+
+    @Override
+    public void increasePrice() {
+      //  productList.stream().map(n->n.getPrice()+n.getPrice()*10/100).collect(Collectors.toList()).forEach(System.out::println);
+
+        productList.stream().map(n -> {
+            double m = n.getPrice() + (n.getPrice() * 10 / 100);
+            return m;
+        }).forEach(System.out::println);
     }
 }
