@@ -1,16 +1,6 @@
 package kg.megacom;
-
-import kg.megacom.db.DbHelper;
-import kg.megacom.db.impl.DbHelperImpl;
-import kg.megacom.models.Product;
-import kg.megacom.models.Seller;
-import kg.megacom.models.Shop;
 import kg.megacom.service.*;
 import kg.megacom.service.ipml.*;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {

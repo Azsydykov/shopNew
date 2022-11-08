@@ -1,5 +1,6 @@
 package kg.megacom.service.ipml;
 
+import javafx.scene.chart.AxisBuilder;
 import kg.megacom.exeption.ProductNotFoundExc;
 import kg.megacom.models.Product;
 import kg.megacom.models.ProductReceipt;
@@ -17,7 +18,9 @@ public class SellOperationServiceImpl implements SellOperationService {
     ReceiptService receiptService = new ReceiptServiceImpl();
     ProductReceiptService productReceiptService = new ProductReceiptServiceImpl();
     ArrayList<Receipt> receiptList = new ArrayList<>();
-    TreeSet<ProductReceipt> selectedProduct = new TreeSet<>();
+    //  TreeSet<ProductReceipt> selectedProduct = new TreeSet<>();
+    List<ProductReceipt> selectedProduct = new ArrayList<>();
+
 
     Product product = null;
 
@@ -25,7 +28,7 @@ public class SellOperationServiceImpl implements SellOperationService {
     public void sell() {
         System.out.println("Выберите продукты для продажи: ");
         List<Product> productList = productService.getAllProducts();
-       // productService.increasePrice();
+        // productService.increasePrice();
 
         System.out.println(productList);
 
@@ -103,6 +106,7 @@ public class SellOperationServiceImpl implements SellOperationService {
 
 
 }
+
         /*
         Вывести продукты для продажи
         Выбрать продукты (составить список продуктов для корзины и определить их количество) отдельный лист

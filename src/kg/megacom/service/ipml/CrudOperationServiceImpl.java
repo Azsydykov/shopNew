@@ -1,8 +1,6 @@
 package kg.megacom.service.ipml;
-
 import kg.megacom.models.*;
 import kg.megacom.service.*;
-
 import java.util.Random;
 import java.util.Scanner;
 

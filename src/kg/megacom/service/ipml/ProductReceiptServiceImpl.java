@@ -1,12 +1,10 @@
 package kg.megacom.service.ipml;
-
 import kg.megacom.db.DbHelper;
 import kg.megacom.db.impl.DbHelperImpl;
 import kg.megacom.models.Product;
 import kg.megacom.models.ProductReceipt;
 import kg.megacom.models.Receipt;
 import kg.megacom.service.ProductReceiptService;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

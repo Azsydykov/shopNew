@@ -1,17 +1,15 @@
 package kg.megacom.service.ipml;
-
 import kg.megacom.db.DbHelper;
 import kg.megacom.db.impl.DbHelperImpl;
 import kg.megacom.exeption.ProductNotFoundExc;
 import kg.megacom.models.Product;
 import kg.megacom.service.ProductService;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class ProductServiceImpl implements ProductService {
     DbHelper dbHelper = new DbHelperImpl();
