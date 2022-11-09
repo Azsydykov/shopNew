@@ -26,6 +26,7 @@ public class SellOperationServiceImpl implements SellOperationService {
     @Override
     public void sell() {
         System.out.println("Выберите продукты для продажи: ");
+
         List<Product> productList = productService.getAllProducts();
         // productService.increasePrice();
 
@@ -50,19 +51,22 @@ public class SellOperationServiceImpl implements SellOperationService {
             double setCount = scanner.nextDouble();
             Receipt receipt = new Receipt();
 
-         //   receipt.setId(receiptService.getLastId()+1);
+
+           // receipt.setId(receiptService.getLastId()+1);
 
             productReceipt.setReceipt(receipt);
             productReceipt.setId(product.getId());
 
 
             productReceipt.setCount(setCount);
-            productReceipt.setCost(product.getPrice() * setCount);
+            productReceipt.setCost(product.getPrice()*productReceipt.getCount());
 
             boolean was = false;
             for (ProductReceipt item : selectedProduct) {
                 if (item.getId() == product.getId()) {
                     item.setCount(item.getCount() + productReceipt.getCount());
+                    item.setCost(item.getCost()+ productReceipt.getCost());
+
                     was = true;
                 }
             }
@@ -114,7 +118,6 @@ public class SellOperationServiceImpl implements SellOperationService {
         receiptService.createReceipt(receipt);
 
     }
-
 
 }
 

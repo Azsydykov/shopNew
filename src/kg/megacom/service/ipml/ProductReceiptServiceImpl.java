@@ -60,4 +60,19 @@ public class ProductReceiptServiceImpl implements ProductReceiptService {
     public ProductReceipt findById(Long id) {
         return null;
     }
+
+    @Override
+    public long getLastId() {
+        Receipt receipt = new Receipt();
+
+        try {
+            PreparedStatement ps = dbHelper.getConnection("SELECT id FROM tb_receipt ORDER BY id DESC LIMIT 1");
+            ResultSet resultSet = ps.executeQuery();
+            receipt.setId(resultSet.getLong("id"));
+
+        } catch (SQLException throwables) {
+            throw new RuntimeException("Произошла ошибка при выводе списка чеков");
+        }
+        return receipt.getId();
+    }
 }

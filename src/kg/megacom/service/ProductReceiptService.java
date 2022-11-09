@@ -11,4 +11,5 @@ public interface ProductReceiptService {
      ProductReceipt findById(Long id);
 
 
+    long getLastId();
 }
