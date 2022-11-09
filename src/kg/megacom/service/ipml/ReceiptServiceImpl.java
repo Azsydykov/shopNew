@@ -110,7 +110,6 @@ public class ReceiptServiceImpl implements ReceiptService {
     @Override
     public void updateReceipt(long id) {
         Scanner sc = new Scanner(System.in);
-        //System.out.println("Введите сумму: ");
         String totalSum = sc.next();
         try {
             PreparedStatement ps = dbHelper.getConnection("Update tb_receipt set totalSum=? where id=?");
@@ -121,5 +120,19 @@ public class ReceiptServiceImpl implements ReceiptService {
             throw new RuntimeException("Произошла ошибка при изменении продавца!");
         }
     }
-}
 
+    @Override
+    public long getLastId() {
+        Receipt receipt = new Receipt();
+
+        try {
+            PreparedStatement ps = dbHelper.getConnection("SELECT id FROM tb_receipt ORDER BY id DESC LIMIT 1");
+            ResultSet resultSet = ps.executeQuery();
+            receipt.setId(resultSet.getLong("id"));
+
+        } catch (SQLException throwables) {
+            throw new RuntimeException("Произошла ошибка при выводе списка чеков");
+        }
+        return receipt.getId();
+    }
+}

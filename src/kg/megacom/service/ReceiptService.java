@@ -10,4 +10,5 @@ public interface ReceiptService {
     Receipt getReceiptById(Long id);
     public void deleteReceipt(int id);
     void updateReceipt(long id);
+    public long getLastId();
 }

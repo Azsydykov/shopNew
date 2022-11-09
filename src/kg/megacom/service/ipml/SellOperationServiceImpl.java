@@ -50,7 +50,7 @@ public class SellOperationServiceImpl implements SellOperationService {
             double setCount = scanner.nextDouble();
             Receipt receipt = new Receipt();
 
-        //    receipt.setId(getlastid()+1);
+         //   receipt.setId(receiptService.getLastId()+1);
 
             productReceipt.setReceipt(receipt);
             productReceipt.setId(product.getId());
@@ -58,6 +58,7 @@ public class SellOperationServiceImpl implements SellOperationService {
 
             productReceipt.setCount(setCount);
             productReceipt.setCost(product.getPrice() * setCount);
+
             boolean was = false;
             for (ProductReceipt item : selectedProduct) {
                 if (item.getId() == product.getId()) {
