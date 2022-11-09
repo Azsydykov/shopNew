@@ -121,6 +121,5 @@ public class ReceiptServiceImpl implements ReceiptService {
             throw new RuntimeException("Произошла ошибка при изменении продавца!");
         }
     }
-
-    }
+}
 

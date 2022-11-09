@@ -1,6 +1,5 @@
 package kg.megacom.service.ipml;
 
-import javafx.scene.chart.AxisBuilder;
 import kg.megacom.exeption.ProductNotFoundExc;
 import kg.megacom.models.Product;
 import kg.megacom.models.ProductReceipt;
@@ -18,8 +17,8 @@ public class SellOperationServiceImpl implements SellOperationService {
     ReceiptService receiptService = new ReceiptServiceImpl();
     ProductReceiptService productReceiptService = new ProductReceiptServiceImpl();
     ArrayList<Receipt> receiptList = new ArrayList<>();
-    //  TreeSet<ProductReceipt> selectedProduct = new TreeSet<>();
-    List<ProductReceipt> selectedProduct = new ArrayList<>();
+    TreeSet<ProductReceipt> selectedProduct = new TreeSet<>();
+    // List<ProductReceipt> selectedProduct = new ArrayList<>();
 
 
     Product product = null;
@@ -50,13 +49,24 @@ public class SellOperationServiceImpl implements SellOperationService {
             System.out.println("Введите количество: ");
             double setCount = scanner.nextDouble();
             Receipt receipt = new Receipt();
-            receipt.setId(receipt.getId());
+
+        //    receipt.setId(getlastid()+1);
+
             productReceipt.setReceipt(receipt);
+            productReceipt.setId(product.getId());
+
 
             productReceipt.setCount(setCount);
             productReceipt.setCost(product.getPrice() * setCount);
-
-            selectedProduct.add(productReceipt);
+            boolean was = false;
+            for (ProductReceipt item : selectedProduct) {
+                if (item.getId() == product.getId()) {
+                    item.setCount(item.getCount() + productReceipt.getCount());
+                    was = true;
+                }
+            }
+            if (!was)
+                selectedProduct.add(productReceipt);
 
             productReceiptService.createProductReceipt(productReceipt);
 
